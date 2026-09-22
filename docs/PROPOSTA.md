@@ -174,7 +174,7 @@ O padrão visual do projeto segue o **mockup v1** (`frontend/public/ecoflux-mock
 
 ### Decisão de domínio (resolvida)
 
-O enum `TipoResiduo` é `ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, CONTAMINADO, ELETRONICO` — **tanto `CONTAMINADO` quanto `ELETRONICO` entram**, decisão da Reunião 1 (2026-09-21, ver `docs/REUNIOES.md`).
+O enum `TipoResiduo` é `ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, ELETRONICO` — **`ELETRONICO` entra**; **`CONTAMINADO` fica de fora do v1 por ora** (voltou a ser pendência de consulta, ver `docs/REUNIOES.md` e a seção de pendências do `docs/API.md`).
 
 ## 10. Links de referência
 

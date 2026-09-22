@@ -101,12 +101,12 @@ O diagrama UML apresentado possui nove classes. Entre elas, destacam-se:
 - **Ponto de descarte:** representa a localização que agrupa uma ou mais lixeiras;
 - **Descarte:** registro persistente da operação realizada pelo colaborador;
 - **Código de descarte:** elemento temporário utilizado na validação;
-- **Tipo de resíduo:** enumeração dos resíduos aceitos — orgânico, metal, plástico, papel, vidro, **contaminado e eletrônico**;
+- **Tipo de resíduo:** enumeração dos resíduos aceitos — orgânico, metal, plástico, papel, vidro e **eletrônico**;
 - **Solicitação de limpeza:** registro emitido quando uma lixeira precisa ser esvaziada.
 
 A distinção entre os tipos de usuário será feita principalmente pelos métodos e permissões disponíveis para cada perfil.
 
-> **Decisão de domínio (2026-09-21):** **tanto `CONTAMINADO` quanto `ELETRONICO` entram no enum** `TipoResiduo`. Pendência anterior resolvida. Ver `docs/DIAGRAMAS.md`.
+> **Decisão de domínio (2026-09-21; revista no mesmo dia):** **`CONTAMINADO` fica de fora do v1 por enquanto** e volta a ser pendência de consulta. **`ELETRONICO` entra** no enum `TipoResiduo`. Ver `docs/DIAGRAMAS.md`.
 
 ### 8. Arquitetura tecnológica
 
@@ -192,7 +192,7 @@ A reunião consolidou a arquitetura inicial do sistema, o fluxo de descarte, os 
 
 | Decisão | Status |
 | --- | --- |
-| Enum `TipoResiduo` inclui **CONTAMINADO e ELETRONICO** | Resolvida (2026-09-21) |
+| Enum `TipoResiduo` inclui **CONTAMINADO e ELETRONICO** | **Revista (2026-09-21):** `CONTAMINADO` sai do v1 (pendência); `ELETRONICO` fica |
 | **BCrypt** para hash de senhas (cadastro/login) | Adotado (ver RNF01) |
 | **Luiz Felipe Silva** eleito **Scrum Master** | Eleito (2026-09-21) |
 | Fluxo de validação oficial = Documento (código da lixeira → site) | Confirmado (2026-09-21) |
