@@ -91,7 +91,7 @@ Fluxo principal esperado:
 
 | ID | Requisito |
 | --- | --- |
-| **RNF01** | **Segurança:** dados de autenticação não devem ser armazenados em texto puro e operações de descarte devem ser protegidas contra reutilização simples de códigos. |
+| **RNF01** | **Segurança:** dados de autenticação não devem ser armazenados em texto puro (hash com **BCrypt**) e operações de descarte devem ser protegidas contra reutilização simples de códigos. |
 | **RNF02** | **Disponibilidade:** o sistema deve lidar de forma controlada com falhas temporárias de conexão entre ESP32 e servidor, informando o usuário quando uma operação não puder ser concluída. |
 | **RNF03** | **Usabilidade:** o fluxo de descarte e validação deve ser simples o suficiente para ser realizado rapidamente por um usuário no campus. |
 | **RNF04** | **Manutenibilidade:** o backend, site e firmware devem possuir separação clara de responsabilidades para facilitar testes e evolução. |
@@ -110,6 +110,7 @@ Uma arquitetura inicial compatível com o projeto é:
 - Protótipo IoT opcional: ESP32.
 - Comunicação do ESP32 (caso o protótipo seja implementado): Wi-Fi + HTTP/HTTPS.
 - Mapa: OpenStreetMap ou outro provedor de mapas adequado ao projeto.
+- Segurança de senhas: BCrypt (hash no cadastro/login).
 
 > Essas tecnologias são sugestões e podem ser substituídas conforme o conhecimento da equipe e as exigências da disciplina.
 
@@ -171,9 +172,9 @@ O padrão visual do projeto segue o **mockup v1** (`frontend/public/ecoflux-mock
 - **Oficial:** `frontend/public/Logo Ecoflux — floresta.png` (recolor para a paleta Floresta).
 - **Variações mantidas:** `Logo Ecoflux.png` (teal original) e `Variações do Logo Ecoflux.png` (monocromáticas) — para impressos em escala de cinza e uso histórico.
 
-### Decisão de domínio (pendência de equipe)
+### Decisão de domínio (resolvida)
 
-O enum `TipoResiduo` usado no modelo do **Documento** (`ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, CONTAMINADO`) é, **por enquanto**, a fonte oficial. Os mockups exibem "Eletrônico" no lugar de "Contaminado"; **se "Eletrônico" deve entrar no enum é pendência de consulta com a equipe** — registrar a decisão aqui.
+O enum `TipoResiduo` é `ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, CONTAMINADO, ELETRONICO` — **tanto `CONTAMINADO` quanto `ELETRONICO` entram**, decisão da Reunião 1 (2026-09-21, ver `docs/REUNIOES.md`).
 
 ## 10. Links de referência
 

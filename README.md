@@ -48,6 +48,7 @@ Requisitos detalhados (RF01–RF11, RNF01–RNF06) e critérios de sucesso em `d
 | --- | --- |
 | `docs/PROPOSTA.md` | Proposta do MVP (base original) + requisitos e identidade visual |
 | `docs/DIAGRAMAS.md` | Diagrama de classes, casos de uso e arquitetura |
+| `docs/REUNIOES.md` | Atas e decisões das reuniões |
 | `frontend/public/Ecoflux_Documento_de_Visao_do_Projeto.pdf` | Documento de Visão atualizado |
 | `frontend/public/ecoflux-mockups.html` / `-v2.html` | Mockups visuais interativos (v1 = padrão visual) |
 | `frontend/public/Logo Ecoflux — floresta.png` | Logo oficial (paleta Floresta) |
@@ -63,8 +64,8 @@ Todos os integrantes são alunos da UFRPE (disciplina Engenharia de Software 202
 
 - Flávia Borges
 - Hildemario Castro
-- Luiz Silva
+- Luiz Felipe Silva — **Scrum Master**
 - Marcus Costa
 - Rilson Joás
 
-> Papéis e responsabilidades: a definir.
+> Demais papéis e responsabilidades: a definir.

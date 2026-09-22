@@ -79,9 +79,9 @@ Métodos:
 
 #### Tipo de Resíduo («enumeration»)
 
-`ORGANICO`, `METAL`, `PAPEL`, `PLASTICO`, `VIDRO`, `CONTAMINADO`.
+`ORGANICO`, `METAL`, `PAPEL`, `PLASTICO`, `VIDRO`, `CONTAMINADO`, `ELETRONICO`.
 
-> **Pendência de equipe (2026-09-21):** este enum (fonte: Documento de Visão) é o oficial por enquanto. Os mockups exibem "Eletrônico" no lugar de "Contaminado"; **se "Eletrônico" entra no enum é pendência de consulta com a equipe** — registrar decisão aqui.
+> **Decisão (2026-09-21):** **`CONTAMINADO` e `ELETRONICO` entram no enum** — pendência anterior resolvida na Reunião 1 (ver `docs/REUNIOES.md`).
 
 #### Descarte
 
