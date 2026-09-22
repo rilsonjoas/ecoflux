@@ -1,0 +1,53 @@
+# ── IDEs / editores ───────────────────────────────
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# ── Sistemas ───────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ───────────────────────────────────────────
+*.log
+logs/
+
+# ── Mobile (Flutter) ───────────────────────────────
+mobile/.dart_tool/
+mobile/build/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+mobile/.pub-cache/
+mobile/.pub/
+mobile/ios/Pods/
+mobile/ios/.symlinks/
+mobile/ios/Flutter/flutter_export_environment.sh
+mobile/android/.gradle/
+mobile/android/local.properties
+
+# ── Backend (Spring Boot / Maven / Gradle) ─────────
+backend/target/
+backend/build/
+backend/.mvn/
+backend/*.jar
+backend/*.war
+
+# ── Firmware (ESP32 / PlatformIO / Arduino) ────────
+firmware/.pio/
+firmware/.vscode/
+firmware/build/
+firmware/.*.swp
+
+# ── Variáveis de ambiente ──────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Banco ──────────────────────────────────────────
+*.sql.dump
+*.backup
+
+# ── Documentos sensíveis ───────────────────────────
+docs/*.pdf
