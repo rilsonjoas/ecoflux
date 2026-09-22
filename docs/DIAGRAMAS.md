@@ -81,6 +81,8 @@ Métodos:
 
 `ORGANICO`, `METAL`, `PAPEL`, `PLASTICO`, `VIDRO`, `CONTAMINADO`.
 
+> **Decisão registrada (2026-09-21):** este enum (fonte: Documento de Visão) é o oficial. Os mockups exibem "Eletrônico" no lugar de "Contaminado"; mantida como decisão consciente de não-alteração por enquanto.
+
 #### Descarte
 
 | Atributo | Tipo |

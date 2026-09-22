@@ -97,12 +97,14 @@ Fluxo principal esperado:
 | **RNF04** | **Manutenibilidade:** o backend, site e firmware devem possuir separação clara de responsabilidades para facilitar testes e evolução. |
 | **RNF05** | **Integridade:** um código de descarte deve ser de uso único e não pode gerar pontos múltiplas vezes. |
 | **RNF06** | **Escalabilidade básica:** a arquitetura deve permitir cadastrar mais de uma lixeira e mais de um ponto de descarte sem alteração estrutural significativa. |
+| **RNF07** | **Responsividade:** o site deve se comportar corretamente em mobile e desktop, abordagem mobile-first, com breakpoints compatíveis com os modelos de referência (ex.: `@media max-width:720px`). |
+| **RNF08** | **Acessibilidade e coerência visual:** suporte a modo escuro nativo (`prefers-color-scheme`), contraste de texto dentro da paleta oficial e consistência dos componentes/identidade visual em todas as telas. |
 
 ## 6. Escopo tecnológico sugerido
 
 Uma arquitetura inicial compatível com o projeto é:
 
-- Site mobile: Flutter.
+- Site (frontend): HTML/CSS + JavaScript — decisão de 2026-09-21 (o Flutter foi escanteado; ver também `docs/DIAGRAMAS.md` e o Documento de Visão).
 - Backend/API REST: Spring Boot.
 - Banco de dados: PostgreSQL.
 - Protótipo IoT opcional: ESP32.
@@ -139,7 +141,43 @@ O MVP será considerado funcional quando a equipe conseguir demonstrar o fluxo e
 
 **Resumo:** o MVP deve provar que site, backend e banco de dados conseguem trabalhar juntos para transformar um descarte em uma operação digital registrada e recompensada. O protótipo de lixeira eletrônica poderá ampliar a demonstração por meio de IoT, mas não será requisito essencial da primeira entrega.
 
-## 9. Links de referência
+## 9. Identidade visual (decisões de 2026-09-21)
+
+O padrão visual do projeto segue o **mockup v1** (`frontend/public/ecoflux-mockups.html`), paleta *Floresta* e tipografia associada.
+
+### Paleta Floresta
+
+| Token | Cor | Hex |
+| --- | --- | --- |
+| `--page-bg` | Fundo claro | `#F7F5EF` |
+| `--page-ink` | Texto | `#16231A` |
+| `--page-muted` | Texto secundário | `#5B6B5C` |
+| `--paper` | Cartões | `#F3EEE1` |
+| `--paper-2` | Cartões secundários | `#E9E1CC` |
+| `--forest` | Verde profundo (brand) | `#1C2B1E` |
+| `--forest-2` | Verde escuro | `#24371F` |
+| `--marigold` | Destaque/CTA | `#E7B23C` |
+| `--brick` | Alerta/erro | `#B34B28` |
+| `--sage` | Suporte/positivo | `#557A5F` |
+| `--sage-light` | Suporte claro | `#86A98C` |
+
+Modo escuro: superfícies derivadas de `#10160F` via `prefers-color-scheme`, preservando marigold/sage/brick.
+
+### Tipografia
+
+- Títulos: **Fraunces** (serif/display).
+- Texto: **Space Grotesk** (sans).
+
+### Logo
+
+- **Oficial:** `frontend/public/Logo Ecoflux — floresta.png` (recolor para a paleta Floresta).
+- **Variações mantidas:** `Logo Ecoflux.png` (teal original) e `Variações do Logo Ecoflux.png` (monocromáticas) — para impressos em escala de cinza e uso histórico.
+
+### Decisão de domínio (registrada)
+
+O enum `TipoResiduo` usado no modelo do **Documento** (`ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, CONTAMINADO`) é a fonte oficial. Os mockups exibem "Eletrônico" no lugar de "Contaminado"; essa divergência é uma **decisão consciente de não-alteração por enquanto** — qualquer mudança futura será registrada.
+
+## 10. Links de referência
 
 - Wireframing (Figma): https://www.figma.com/design/2y2sJ7QM6Z0utbzRBfmmY1/projeto_Eng_sof?node-id=17-60&p=f
 - Trello (g-bot Ecoflux — fluxo de descarte inteligente): https://trello.com/b/fb33NuIQ/ecoflux-fluxo-de-descarte-inteligente

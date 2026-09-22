@@ -28,7 +28,7 @@ O fluxo essencial: o usuário encontra um ponto de descarte no mapa, realiza o d
 - Gamificação: descartes validados geram pontos
 - *(extra)* Lixeira ESP32/Arduino: seleção de tipo de resíduo + geração de código único via Wi-Fi
 
-Requisitos detalhados (RF01–RF11, RNF01–RNF06) e critérios de sucesso em `docs/PROPOSTA.md`. Modelo de domínio, casos de uso e arquitetura em `docs/DIAGRAMAS.md`.
+Requisitos detalhados (RF01–RF11, RNF01–RNF08) e critérios de sucesso em `docs/PROPOSTA.md`. Modelo de domínio, casos de uso e arquitetura em `docs/DIAGRAMAS.md`. Identidade visual (paleta, tipografia e logo) em `docs/PROPOSTA.md §9`.
 
 ## Tecnologias
 
@@ -44,10 +44,11 @@ Requisitos detalhados (RF01–RF11, RNF01–RNF06) e critérios de sucesso em `d
 
 | Documento | Descrição |
 | --- | --- |
-| `docs/PROPOSTA.md` | Proposta do MVP (base original) |
+| `docs/PROPOSTA.md` | Proposta do MVP (base original) + requisitos e identidade visual |
 | `docs/DIAGRAMAS.md` | Diagrama de classes, casos de uso e arquitetura |
 | `frontend/public/Ecoflux_Documento_de_Visao_do_Projeto.pdf` | Documento de Visão atualizado |
-| `frontend/public/ecoflux-mockups.html` / `-v2.html` | Mockups visuais interativos |
+| `frontend/public/ecoflux-mockups.html` / `-v2.html` | Mockups visuais interativos (v1 = padrão visual) |
+| `frontend/public/Logo Ecoflux — floresta.png` | Logo oficial (paleta Floresta) |
 
 ## Links
 
