@@ -4,6 +4,8 @@ Solução tecnológica para incentivar, facilitar e acompanhar o **descarte corr
 
 Projeto da disciplina **Engenharia de Software (2026.2)** — tema "Tecnologia a serviço da sustentabilidade na UFRPE".
 
+> **Leitura rápida (avaliadores/professora):** o Ecoflux enfrenta o descarte inadequado no campus da UFRPE — mesmo havendo infraestrutura, a simples disponibilização dos pontos não garante o uso correto. O **MVP** entrega um site web (HTML/CSS + JS + OpenStreetMap) com mapa dos pontos de descarte, cadastro/autenticação, pontuação e histórico via gamificação; um backend **Spring Boot + PostgreSQL** registra e valida cada descarte; e um protótipo **ESP32** (extra ao MVP) gera o código único de validação. O MVP é conclusivo quando o fluxo *cadastro → localizar ponto → descartar → pontuar → consultar histórico* funciona de ponta a ponta. Para detalhes completos, comece pelo **Documento de Visão** (`frontend/public/Ecoflux_Documento_de_Visao_do_Projeto.pdf`) e siga para `docs/PROPOSTA.md` (requisitos e critérios) e `docs/DIAGRAMAS.md` (modelo de domínio e arquitetura).
+
 ---
 
 ## Estrutura do monorepo
@@ -57,4 +59,12 @@ Requisitos detalhados (RF01–RF11, RNF01–RNF06) e critérios de sucesso em `d
 
 ## Equipe
 
-(Equipe da disciplina — preencher)
+Todos os integrantes são alunos da UFRPE (disciplina Engenharia de Software 2026.2):
+
+- Flávia Borges
+- Hildemario Castro
+- Luiz Silva
+- Marcus Costa
+- Rilson Joás
+
+> Papéis e responsabilidades: a definir.
