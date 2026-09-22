@@ -28,7 +28,7 @@ O fluxo essencial: o usuário encontra um ponto de descarte no mapa, realiza o d
 - Gamificação: descartes validados geram pontos
 - *(extra)* Lixeira ESP32/Arduino: seleção de tipo de resíduo + geração de código único via Wi-Fi
 
-Requisitos detalhados (RF01–RF11, RNF01–RNF08) e critérios de sucesso em `docs/PROPOSTA.md`. Modelo de domínio, casos de uso e arquitetura em `docs/DIAGRAMAS.md`. Identidade visual (paleta, tipografia e logo) em `docs/PROPOSTA.md §9`.
+Requisitos detalhados (RF01–RF11, RNF01–RNF06) e critérios de sucesso em `docs/PROPOSTA.md`. Modelo de domínio, casos de uso e arquitetura em `docs/DIAGRAMAS.md`. Identidade visual (paleta, tipografia e logo) em `docs/PROPOSTA.md §9`. Pendências em aberto (responsividade × professora; "Eletrônico" no enum × equipe) registradas no `PROPOSTA.md` e no vault.
 
 ## Tecnologias
 

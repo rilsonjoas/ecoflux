@@ -97,8 +97,8 @@ Fluxo principal esperado:
 | **RNF04** | **Manutenibilidade:** o backend, site e firmware devem possuir separação clara de responsabilidades para facilitar testes e evolução. |
 | **RNF05** | **Integridade:** um código de descarte deve ser de uso único e não pode gerar pontos múltiplas vezes. |
 | **RNF06** | **Escalabilidade básica:** a arquitetura deve permitir cadastrar mais de uma lixeira e mais de um ponto de descarte sem alteração estrutural significativa. |
-| **RNF07** | **Responsividade:** o site deve se comportar corretamente em mobile e desktop, abordagem mobile-first, com breakpoints compatíveis com os modelos de referência (ex.: `@media max-width:720px`). |
-| **RNF08** | **Acessibilidade e coerência visual:** suporte a modo escuro nativo (`prefers-color-scheme`), contraste de texto dentro da paleta oficial e consistência dos componentes/identidade visual em todas as telas. |
+
+> **Pendência de consulta (2026-09-21):** **responsividade** (comportamento correto em mobile e desktop, mobile-first) é necessária e ainda **não foi validada com a professora** — deve ser formalizada como requisito somente após essa consulta. Coerência visual segue a identidade visual (§9).
 
 ## 6. Escopo tecnológico sugerido
 
@@ -161,8 +161,6 @@ O padrão visual do projeto segue o **mockup v1** (`frontend/public/ecoflux-mock
 | `--sage` | Suporte/positivo | `#557A5F` |
 | `--sage-light` | Suporte claro | `#86A98C` |
 
-Modo escuro: superfícies derivadas de `#10160F` via `prefers-color-scheme`, preservando marigold/sage/brick.
-
 ### Tipografia
 
 - Títulos: **Fraunces** (serif/display).
@@ -173,9 +171,9 @@ Modo escuro: superfícies derivadas de `#10160F` via `prefers-color-scheme`, pre
 - **Oficial:** `frontend/public/Logo Ecoflux — floresta.png` (recolor para a paleta Floresta).
 - **Variações mantidas:** `Logo Ecoflux.png` (teal original) e `Variações do Logo Ecoflux.png` (monocromáticas) — para impressos em escala de cinza e uso histórico.
 
-### Decisão de domínio (registrada)
+### Decisão de domínio (pendência de equipe)
 
-O enum `TipoResiduo` usado no modelo do **Documento** (`ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, CONTAMINADO`) é a fonte oficial. Os mockups exibem "Eletrônico" no lugar de "Contaminado"; essa divergência é uma **decisão consciente de não-alteração por enquanto** — qualquer mudança futura será registrada.
+O enum `TipoResiduo` usado no modelo do **Documento** (`ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, CONTAMINADO`) é, **por enquanto**, a fonte oficial. Os mockups exibem "Eletrônico" no lugar de "Contaminado"; **se "Eletrônico" deve entrar no enum é pendência de consulta com a equipe** — registrar a decisão aqui.
 
 ## 10. Links de referência
 
