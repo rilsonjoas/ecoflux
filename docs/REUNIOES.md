@@ -198,3 +198,60 @@ A reunião consolidou a arquitetura inicial do sistema, o fluxo de descarte, os 
 | Fluxo de validação oficial = Documento (código da lixeira → site) | Confirmado (2026-09-21) |
 | Sensor de descarte (peso/nível) conforme capacidade do aparelho | Em definição |
 | Papéis/responsabilidades da equipe no projeto | A definir |
+---
+
+## Reunião 2 — Hospedagem, Enum e Papéis da Equipe
+
+- **Data:** a definir (próxima)
+- **Natureza:** planejamento (Scrum)
+- **Objetivo:** decidir onde o banco e a aplicação ficam hospedados, revisar a pendência do `CONTAMINADO` no enum, validar a responsividade com a professora e fechar os papéis da equipe.
+
+### 1. Contexto: o que já está fechado (não reabrir)
+
+- Enum `TipoResiduo` v1 = 6 valores: `ORGANICO, METAL, PAPEL, PLASTICO, VIDRO, ELETRONICO`.
+- `CONTAMINADO` está **fora** do v1 por enquanto (voltou a ser pendência — ver item 2).
+- Senhas: **BCrypt** (RNF01).
+- **Scrum Master:** Luiz Felipe Silva.
+- Fluxo de descarte = o do Documento (código da lixeira → site).
+- Reunião 1 (2026-09-21) definiu arquitetura, diagramas e divisão de apresentação.
+
+### 2. Pauta — decisões em aberto
+
+#### 2.1 Onde hospedar banco e aplicação
+Recomendação (VPS própria, custo zero, demo acessível de qualquer lugar):
+
+| Opção | Custo | Prós | Contras |
+| --- | --- | --- | --- |
+| Localhost | R$ 0 | Demo garantida na própria máquina | Só acessível na máquina do autor; professora não testa |
+| Postgres gerenciado (ex.: Neon/Supabase) | ~US$ 15–25/mês | Set-up rápido, sem operação | Custo mensal; free tiers limitados/imprevisíveis |
+| **VPS própria** (decisão recomendada) | R$ 0 | Custo zero; backup/restore já testados; demo acessível em qualquer lugar | Requer manutenção básica |
+
+**Proposta:** VPS própria + Postgres já com backup/restore testados.
+
+#### 2.2 `CONTAMINADO` volta ao enum?
+- Vai impactar: comportamento de descarte, pontuação (0 pontos? rejeita? avisa?).
+- Voto da equipe necessário. Se não entrar no v1, registrar justificativa para a professora.
+
+#### 2.3 Responsividade × professora
+- Cell-first (`720px` do mockup) é necessário, mas **não validado** se vira requisito (RF/RNF).
+- **Ação:** levar à professora para confirmar se entra como requisito formal.
+
+#### 2.4 Papéis e responsabilidades da equipe
+- Só Scrum Master eleito (Luiz Felipe). Definir: Product Owner, desenvolvedores (front/back/IoT), testes, apresentação.
+
+### 3. Status das decisões
+
+| Decisão | Status |
+| --- | --- |
+| Hospedagem (local × gerenciado × VPS própria) | Em aberto — proposta: VPS própria |
+| `CONTAMINADO` volta ao enum? | Em aberto |
+| Responsividade vira requisito? | Em aberto — consultar professora |
+| Papéis/responsabilidades da equipe | Em aberto |
+
+### 4. Ações desta reunião
+
+| Ação | Responsável | Prazo |
+| --- | --- | --- |
+| Validar responsividade com a professora | Equipe/Scrum Master | Próxima reunião |
+| Decidir hospedagem (voto) | Equipe | Próxima reunião |
+| Definir papéis | Equipe | Próxima reunião |
