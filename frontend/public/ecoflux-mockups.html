@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecoflux — Exemplos de interface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page-bg: #F7F5EF;
+    --page-ink: #16231A;
+    --page-muted: #5B6B5C;
+    --forest: #1C2B1E;
+    --forest-2: #24371F;
+    --paper: #F3EEE1;
+    --paper-2: #E9E1CC;
+    --ink: #16231A;
+    --marigold: #E7B23C;
+    --marigold-ink: #4A3410;
+    --brick: #B34B28;
+    --sage: #557A5F;
+    --sage-light: #86A98C;
+    --line: rgba(22,35,26,0.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --page-bg: #10160F;
+      --page-ink: #EDEBE2;
+      --page-muted: #9FAF9C;
+      --line: rgba(237,235,226,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --page-bg: #10160F;
+    --page-ink: #EDEBE2;
+    --page-muted: #9FAF9C;
+    --line: rgba(237,235,226,0.14);
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--page-bg);
+    color: var(--page-ink);
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 56px 24px 80px;
+  }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; }
+
+  .intro{ max-width: 640px; margin-bottom: 48px; }
+  .kicker{
+    font-size: 13px;
+    color: var(--sage);
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+  }
+  h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 4.5vw, 46px);
+    line-height: 1.08;
+    margin: 0 0 16px;
+  }
+  .intro p{
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--page-muted);
+    margin: 0;
+  }
+
+  .frames{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .frame-block{ flex: 1 1 340px; max-width: 400px; }
+  .frame-label{
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    margin: 0 0 4px;
+  }
+  .frame-sub{
+    font-size: 13.5px;
+    color: var(--page-muted);
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+
+  /* ---------- PHONE FRAME (site) ---------- */
+  .phone{
+    background: var(--forest);
+    border-radius: 34px;
+    padding: 14px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.35);
+  }
+  .phone-screen{
+    background: var(--paper);
+    border-radius: 22px;
+    overflow: hidden;
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 620px;
+  }
+  .app-topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 20px 18px 14px;
+  }
+  .app-brand{ display:flex; align-items:center; gap:8px; }
+  .app-brand .mark{
+    width: 26px; height: 26px; border-radius: 8px;
+    background: var(--sage);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .app-brand .mark svg{ width:15px; height:15px; }
+  .app-brand span{
+    font-family:'Fraunces', serif; font-size: 18px; font-weight: 500;
+  }
+  .points-pill{
+    display:flex; align-items:center; gap:6px;
+    background: var(--marigold);
+    color: var(--marigold-ink);
+    padding: 6px 12px 6px 8px;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+  }
+  .points-pill svg{ width:14px; height:14px; }
+
+  .map-area{
+    position: relative;
+    margin: 0 14px;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 230px;
+    background: #DCE6D3;
+  }
+  .map-area svg{ width:100%; height:100%; display:block; }
+
+  .pin-label{
+    position:absolute;
+    background: var(--forest);
+    color: var(--paper);
+    font-size: 10.5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .chips{
+    display:flex; gap:8px; overflow-x:auto;
+    padding: 16px 14px 4px;
+  }
+  .chip{
+    flex: none;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .chip.active{
+    background: var(--sage);
+    border-color: var(--sage);
+    color: #fff;
+  }
+
+  .point-card{
+    margin: 16px 14px 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+  .point-card .row1{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom: 8px;
+  }
+  .point-card h3{
+    font-family:'Fraunces', serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0;
+  }
+  .point-card .dist{
+    font-size: 11.5px;
+    color: var(--sage);
+    font-weight: 600;
+  }
+  .point-card .accepts{
+    display:flex; gap:6px; flex-wrap:wrap; margin-bottom: 12px;
+  }
+  .tag{
+    font-size: 10.5px;
+    background: var(--paper-2);
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: var(--ink);
+  }
+  .cta-btn{
+    width:100%;
+    background: var(--forest);
+    color: var(--paper);
+    border:none;
+    border-radius: 10px;
+    padding: 11px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .history-mini{
+    margin: 16px 14px 0;
+  }
+  .history-mini .h-title{
+    font-size: 11.5px;
+    color: var(--page-muted);
+    margin-bottom: 8px;
+  }
+  .h-item{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+  }
+  .h-item:last-child{ border-bottom: 1px solid var(--line); }
+  .h-item .h-plus{ color: var(--sage); font-weight: 600; }
+
+  .bottom-nav{
+    margin-top: auto;
+    display:flex;
+    border-top: 1px solid var(--line);
+    padding: 10px 8px 14px;
+  }
+  .nav-item{
+    flex:1;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    font-size: 10px;
+    color: var(--page-muted);
+  }
+  .nav-item.active{ color: var(--forest); font-weight: 600; }
+  .nav-item svg{ width:17px; height:17px; }
+
+  /* ---------- DEVICE FRAME (lixeira) ---------- */
+  .device{
+    background: linear-gradient(180deg, #2B2F2C, #1B1E1B);
+    border-radius: 24px;
+    padding: 20px 20px 26px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.35);
+  }
+  .device-screen{
+    background: var(--forest);
+    border-radius: 14px;
+    padding: 22px 18px;
+    min-height: 300px;
+    display:flex; flex-direction:column;
+    color: var(--paper);
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .device-status{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size: 10.5px;
+    color: var(--sage-light);
+    margin-bottom: 18px;
+  }
+  .device-status .dot{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--marigold);
+    display:inline-block; margin-right:5px;
+  }
+  .device-title{
+    font-family:'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .device-sub{
+    font-size: 12px;
+    color: var(--sage-light);
+    margin: 0 0 18px;
+  }
+
+  .waste-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .waste-btn{
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 12px 10px;
+    display:flex; flex-direction:column; align-items:flex-start; gap:8px;
+    color: var(--paper);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .waste-btn svg{ width:20px; height:20px; }
+  .waste-btn span{ font-size: 12px; font-weight: 500; }
+  .waste-btn:hover{ background: rgba(255,255,255,0.1); }
+  .waste-btn.selected{
+    background: var(--marigold);
+    border-color: var(--marigold);
+    color: var(--marigold-ink);
+  }
+
+  .code-state{ display:none; flex-direction:column; align-items:center; text-align:center; margin-top: 12px; }
+  .code-state.show{ display:flex; }
+  .code-box{
+    font-family:'Fraunces', serif;
+    font-size: 34px;
+    letter-spacing: 0.06em;
+    background: rgba(255,255,255,0.08);
+    border: 1px dashed rgba(255,255,255,0.3);
+    border-radius: 12px;
+    padding: 14px 22px;
+    margin: 14px 0;
+  }
+  .code-hint{ font-size: 11.5px; color: var(--sage-light); line-height:1.5; max-width: 240px; }
+  .waste-grid.hide{ display:none; }
+
+  .device-buttons{
+    display:flex; justify-content:center; gap: 14px;
+    margin-top: 18px;
+  }
+  .phys-btn{
+    width: 34px; height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .footnote{
+    margin-top: 44px;
+    font-size: 12.5px;
+    color: var(--page-muted);
+    max-width: 640px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 720px){
+    .frames{ gap: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="intro">
+    <p class="kicker">ECOFLUX — UFRPE</p>
+    <h1>Duas telas do sistema</h1>
+    <p>Um recorte visual das duas pontas do projeto: a tela do site que orienta o descarte e mostra a pontuação, e a interface da lixeira inteligente onde o resíduo é selecionado fisicamente. Toque nos botões para ver os estados mudarem.</p>
+  </div>
+
+  <div class="frames">
+
+    <div class="frame-block">
+      <p class="frame-label">Site — mapa e pontuação</p>
+      <p class="frame-sub">Tela inicial do app web, com o mapa do campus, os pontos de descarte próximos e o histórico do usuário.</p>
+
+      <div class="phone">
+        <div class="phone-screen">
+
+          <div class="app-topbar">
+            <div class="app-brand">
+              <div class="mark">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3C9 7 6 9.5 6 13.5C6 17 8.7 19.5 12 19.5C15.3 19.5 18 17 18 13.5C18 9.5 15 7 12 3Z" fill="#F3EEE1"/></svg>
+              </div>
+              <span>Ecoflux</span>
+            </div>
+            <div class="points-pill">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.6L21 10l-5 4.6 1.4 7.4L12 18.3 6.6 22l1.4-7.4L3 10l6.6-1.4L12 2z" fill="#4A3410"/></svg>
+              128 pts
+            </div>
+          </div>
+
+          <div class="map-area">
+            <svg viewBox="0 0 340 230" preserveAspectRatio="xMidYMid slice">
+              <rect width="340" height="230" fill="#DCE6D3"/>
+              <path d="M0 60 Q90 30 170 65 T340 55" stroke="#B7C7AC" stroke-width="26" fill="none" opacity="0.7"/>
+              <path d="M-10 150 Q100 120 180 155 T350 150" stroke="#C9D6BE" stroke-width="34" fill="none" opacity="0.6"/>
+              <rect x="40" y="30" width="58" height="42" rx="4" fill="#AEC0A0"/>
+              <rect x="130" y="95" width="70" height="50" rx="4" fill="#AEC0A0"/>
+              <rect x="235" y="40" width="60" height="46" rx="4" fill="#AEC0A0"/>
+              <rect x="60" y="160" width="64" height="44" rx="4" fill="#AEC0A0"/>
+              <circle cx="96" cy="58" r="7" fill="#557A5F"/>
+              <circle cx="168" cy="120" r="7" fill="#E7B23C"/>
+              <circle cx="270" cy="70" r="7" fill="#B34B28"/>
+              <circle cx="110" cy="182" r="7" fill="#557A5F"/>
+            </svg>
+            <div class="pin-label" style="top:38px; left:98px;">Bloco B</div>
+            <div class="pin-label" style="top:100px; left:150px;">Ponto 4</div>
+          </div>
+
+          <div class="chips">
+            <button class="chip active" onclick="toggleChip(this)">Todos</button>
+            <button class="chip" onclick="toggleChip(this)">Papel</button>
+            <button class="chip" onclick="toggleChip(this)">Plástico</button>
+            <button class="chip" onclick="toggleChip(this)">Vidro</button>
+            <button class="chip" onclick="toggleChip(this)">Orgânico</button>
+          </div>
+
+          <div class="point-card">
+            <div class="row1">
+              <h3>Ponto 4 — Eng. Ambiental</h3>
+              <span class="dist">80 m</span>
+            </div>
+            <div class="accepts">
+              <span class="tag">Papel</span>
+              <span class="tag">Plástico</span>
+              <span class="tag">Metal</span>
+            </div>
+            <button class="cta-btn">Registrar descarte</button>
+          </div>
+
+          <div class="history-mini">
+            <p class="h-title">Histórico recente</p>
+            <div class="h-item"><span>Plástico — Ponto 4</span><span class="h-plus">+10</span></div>
+            <div class="h-item"><span>Papel — Bloco B</span><span class="h-plus">+10</span></div>
+          </div>
+
+          <div class="bottom-nav">
+            <div class="nav-item active">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9z"/></svg>
+              Mapa
+            </div>
+            <div class="nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 6.6L21 10l-5 4.6 1.4 7.4L12 18.3 6.6 22l1.4-7.4L3 10l6.6-1.4L12 2z"/></svg>
+              Pontos
+            </div>
+            <div class="nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5a1 1 0 011-1h14a1 1 0 011 1v14M4 19l3-3M4 19h16M20 19l-3-3"/></svg>
+              Histórico
+            </div>
+            <div class="nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-5.8 7-5.8s5.8 1.8 7 5.8"/></svg>
+              Perfil
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="frame-block">
+      <p class="frame-label">Lixeira inteligente — seleção</p>
+      <p class="frame-sub">Interface embarcada (ESP32/Arduino) na própria lixeira: o usuário escolhe o resíduo e recebe um código para validar no site.</p>
+
+      <div class="device">
+        <div class="device-screen">
+          <div class="device-status"><span><span class="dot"></span>Wi-Fi conectado</span><span>Ponto 4</span></div>
+          <h2 class="device-title">Selecione o resíduo</h2>
+          <p class="device-sub">Toque no tipo antes de descartar</p>
+
+          <div class="waste-grid" id="wasteGrid">
+            <button class="waste-btn" onclick="selectWaste(this,'Papel')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l4 4v14a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v5h5"/></svg>
+              <span>Papel</span>
+            </button>
+            <button class="waste-btn" onclick="selectWaste(this,'Plástico')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 8h8l1 12a2 2 0 01-2 2H9a2 2 0 01-2-2L8 8z"/><path d="M9 8V5a3 3 0 016 0v3"/></svg>
+              <span>Plástico</span>
+            </button>
+            <button class="waste-btn" onclick="selectWaste(this,'Vidro')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 2h6l1 6-2 3v9a2 2 0 01-2 2h0a2 2 0 01-2-2v-9l-2-3 1-6z"/></svg>
+              <span>Vidro</span>
+            </button>
+            <button class="waste-btn" onclick="selectWaste(this,'Metal')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="7" width="14" height="13" rx="1.5"/><path d="M9 7V5a3 3 0 016 0v2"/></svg>
+              <span>Metal</span>
+            </button>
+            <button class="waste-btn" onclick="selectWaste(this,'Orgânico')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c-4.5 0-8-3.5-8-8 0-5 4-9 8-11 4 2 8 6 8 11 0 4.5-3.5 8-8 8z"/></svg>
+              <span>Orgânico</span>
+            </button>
+            <button class="waste-btn" onclick="selectWaste(this,'Eletrônico')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="12" rx="1.5"/><path d="M9 20h6M12 16v4"/></svg>
+              <span>Eletrônico</span>
+            </button>
+          </div>
+
+          <div class="code-state" id="codeState">
+            <p class="device-sub" style="margin-bottom:0;">Descarte de <strong id="codeWaste">Plástico</strong> registrado</p>
+            <div class="code-box" id="codeValue">7F3K2</div>
+            <p class="code-hint">Valide esse código no site Ecoflux em até 10 minutos para somar seus pontos.</p>
+          </div>
+
+          <div class="device-buttons">
+            <div class="phys-btn"></div>
+            <div class="phys-btn"></div>
+            <div class="phys-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footnote">Mockups ilustrativos para orientar o desenho das telas do Ecoflux — mapa e cartões usam ícones e geometria simplificados, sem provedor de mapas real.</p>
+
+</div>
+
+<script>
+  function toggleChip(el){
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function selectWaste(el, name){
+    document.querySelectorAll('.waste-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('codeWaste').textContent = name;
+    document.getElementById('codeValue').textContent = Math.random().toString(36).substring(2,7).toUpperCase();
+    document.getElementById('wasteGrid').classList.add('hide');
+    document.getElementById('codeState').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('wasteGrid').classList.remove('hide');
+      document.getElementById('codeState').classList.remove('show');
+      el.classList.remove('selected');
+    }, 4000);
+  }
+</script>
+
+</body>
+</html>

@@ -10,9 +10,9 @@ Projeto da disciplina **Engenharia de Software (2026.2)** — tema "Tecnologia a
 
 ```
 ecoflux/
-├── mobile/       # Site/app mobile — Flutter
+├── frontend/     # Site — HTML/CSS + JavaScript + OpenStreetMap
 ├── backend/      # API REST — Spring Boot
-├── firmware/     # Protótipo de lixeira inteligente — ESP32
+├── firmware/     # Protótipo de lixeira inteligente — ESP32/Arduino
 ├── docs/         # Documentação do projeto
 ├── README.md
 ├── LICENSE
@@ -26,19 +26,28 @@ O fluxo essencial: o usuário encontra um ponto de descarte no mapa, realiza o d
 - Mapa do campus com pontos de descarte e tipos de resíduos aceitos
 - Cadastro, autenticação, pontuação e histórico de descartes
 - Gamificação: descartes validados geram pontos
-- *(extra)* Lixeira ESP32: seleção de tipo de resíduo + geração de código único via Wi-Fi
+- *(extra)* Lixeira ESP32/Arduino: seleção de tipo de resíduo + geração de código único via Wi-Fi
 
-Requisitos detalhados (RF01–RF11, RNF01–RNF06) e critérios de sucesso em `docs/PROPOSTA.md`.
+Requisitos detalhados (RF01–RF11, RNF01–RNF06) e critérios de sucesso em `docs/PROPOSTA.md`. Modelo de domínio, casos de uso e arquitetura em `docs/DIAGRAMAS.md`.
 
 ## Tecnologias
 
 | Camada | Tecnologia |
 | --- | --- |
-| Site mobile | Flutter |
+| Site | HTML/CSS + JavaScript |
+| Mapa | OpenStreetMap |
 | Backend/API | Spring Boot |
 | Banco de dados | PostgreSQL |
-| Protótipo IoT | ESP32 (Wi-Fi + HTTP/HTTPS) |
-| Mapa | OpenStreetMap |
+| Protótipo IoT | ESP32/Arduino (Wi-Fi + HTTP/HTTPS) |
+
+## Documentação
+
+| Documento | Descrição |
+| --- | --- |
+| `docs/PROPOSTA.md` | Proposta do MVP (base original) |
+| `docs/DIAGRAMAS.md` | Diagrama de classes, casos de uso e arquitetura |
+| `frontend/public/Ecoflux_Documento_de_Visao_do_Projeto.pdf` | Documento de Visão atualizado |
+| `frontend/public/ecoflux-mockups.html` / `-v2.html` | Mockups visuais interativos |
 
 ## Links
 

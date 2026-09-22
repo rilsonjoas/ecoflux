@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecoflux — Opção 2 de interface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page-bg: #EFF6F4;
+    --page-ink: #0F2622;
+    --page-muted: #5C7A74;
+    --teal-deep: #0B3D3E;
+    --teal: #146B6B;
+    --mint: #CFE8E1;
+    --paper: #FAF8F3;
+    --coral: #E1573C;
+    --sun: #F2B705;
+    --line: rgba(15,38,34,0.13);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --page-bg: #0C1917;
+      --page-ink: #E9F2EF;
+      --page-muted: #8FADA6;
+      --line: rgba(233,242,239,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --page-bg: #0C1917;
+    --page-ink: #E9F2EF;
+    --page-muted: #8FADA6;
+    --line: rgba(233,242,239,0.14);
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--page-bg);
+    color: var(--page-ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 56px 24px 80px;
+  }
+
+  .wrap{ max-width: 1220px; margin: 0 auto; }
+
+  .intro{ max-width: 660px; margin-bottom: 48px; }
+  .kicker{ font-size: 13px; color: var(--teal); margin: 0 0 14px; }
+  h1{
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: clamp(30px, 4.2vw, 42px);
+    line-height: 1.12;
+    margin: 0 0 16px;
+  }
+  .intro p{ font-size: 16px; line-height: 1.6; color: var(--page-muted); margin: 0; }
+
+  .frames{ display:flex; gap:44px; flex-wrap:wrap; align-items:flex-start; }
+  .frame-block.site{ flex: 2 1 560px; max-width: 720px; }
+  .frame-block.kiosk{ flex: 1 1 300px; max-width: 340px; }
+  .frame-label{ font-family:'Sora', sans-serif; font-size: 19px; font-weight: 600; margin: 0 0 4px; }
+  .frame-sub{ font-size: 13.5px; color: var(--page-muted); margin: 0 0 20px; line-height: 1.5; }
+
+  /* ---------- BROWSER FRAME (site, desktop) ---------- */
+  .browser{
+    background: #D9E4E1;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 24px 50px -18px rgba(0,0,0,0.28);
+  }
+  .browser-bar{
+    display:flex; align-items:center; gap:8px;
+    padding: 4px 8px 10px;
+  }
+  .browser-dot{ width:9px; height:9px; border-radius:50%; background:#B9C8C4; }
+  .browser-url{
+    flex:1; margin-left:8px;
+    background: var(--paper);
+    border-radius: 7px;
+    padding: 6px 12px;
+    font-size: 11.5px;
+    color: var(--page-muted);
+  }
+  .browser-screen{
+    background: var(--paper);
+    border-radius: 9px;
+    overflow: hidden;
+    color: var(--page-ink);
+    display:flex;
+    min-height: 480px;
+  }
+
+  .side{
+    width: 168px;
+    background: var(--teal-deep);
+    color: var(--mint);
+    padding: 22px 16px;
+    display:flex; flex-direction:column;
+  }
+  .side-brand{ font-family:'Sora', sans-serif; font-weight:700; font-size:17px; color:#fff; margin-bottom: 28px; }
+  .side-link{
+    font-size: 12.5px; padding: 9px 10px; border-radius: 7px;
+    margin-bottom: 4px; opacity: 0.75;
+  }
+  .side-link.active{ background: rgba(255,255,255,0.1); opacity:1; font-weight:600; color:#fff; }
+  .side-score{
+    margin-top: auto;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .side-score .num{ font-family:'Sora', sans-serif; font-size: 22px; font-weight:700; color: var(--sun); }
+  .side-score .lbl{ font-size: 10.5px; opacity:0.8; }
+
+  .main{ flex:1; padding: 22px 24px; overflow: hidden; }
+  .main-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 16px; }
+  .main-head h2{ font-family:'Sora', sans-serif; font-weight:600; font-size: 19px; margin:0 0 4px; }
+  .main-head p{ font-size: 12.5px; color: var(--page-muted); margin:0; }
+  .legend{ display:flex; gap:12px; }
+  .legend-item{ display:flex; align-items:center; gap:5px; font-size:11px; color:var(--page-muted); }
+  .legend-dot{ width:8px; height:8px; border-radius:50%; }
+
+  .map-panel{
+    background: #E3EEEA;
+    border-radius: 12px;
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .map-panel svg{ width:100%; height:100%; display:block; }
+  .pin-tag{
+    position:absolute;
+    background: var(--teal-deep);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .grid-cards{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mini-card{
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .mini-card .mc-top{ display:flex; justify-content:space-between; margin-bottom:6px; }
+  .mini-card h4{ font-family:'Sora', sans-serif; font-size: 13px; margin:0; font-weight:600; }
+  .mini-card .mc-dist{ font-size: 10.5px; color: var(--teal); font-weight:600; }
+  .mini-card .mc-tags{ display:flex; gap:5px; flex-wrap:wrap; }
+  .mc-tag{ font-size: 9.5px; background: var(--mint); color: var(--teal-deep); padding: 2px 7px; border-radius: 5px; }
+
+  /* ---------- KIOSK (lixeira) ---------- */
+  .kiosk-frame{
+    background: #EFEAE0;
+    border-radius: 26px;
+    padding: 16px;
+    box-shadow: 0 24px 50px -18px rgba(0,0,0,0.28);
+  }
+  .kiosk-screen{
+    background: var(--teal-deep);
+    border-radius: 16px;
+    padding: 24px 20px;
+    min-height: 420px;
+    display:flex; flex-direction:column;
+    color: #fff;
+  }
+  .kiosk-status{ font-size: 10.5px; color: var(--mint); opacity:0.8; margin-bottom: 20px; display:flex; justify-content:space-between; }
+  .kiosk-title{ font-family:'Sora', sans-serif; font-size: 20px; font-weight: 600; margin: 0 0 6px; }
+  .kiosk-sub{ font-size: 12px; color: var(--mint); opacity:0.85; margin: 0 0 20px; }
+
+  .kiosk-grid{ display:flex; flex-direction:column; gap:8px; }
+  .kiosk-btn{
+    display:flex; align-items:center; gap:10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color:#fff;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    cursor:pointer;
+  }
+  .kiosk-btn svg{ width:18px; height:18px; flex:none; }
+  .kiosk-btn:hover{ background: rgba(255,255,255,0.12); }
+  .kiosk-btn.selected{ background: var(--sun); color: var(--teal-deep); border-color: var(--sun); font-weight:600; }
+
+  .kiosk-code{ display:none; flex-direction:column; align-items:center; text-align:center; margin-top: 8px; }
+  .kiosk-code.show{ display:flex; }
+  .kiosk-code .cbox{
+    font-family:'Sora', sans-serif; font-size: 30px; font-weight:700;
+    background: rgba(255,255,255,0.08);
+    border: 1px dashed rgba(255,255,255,0.3);
+    border-radius: 10px;
+    padding: 12px 20px; margin: 12px 0;
+    color: var(--sun);
+  }
+  .kiosk-code p{ font-size: 11px; color: var(--mint); opacity:0.85; max-width:230px; line-height:1.5; }
+  .kiosk-grid.hide{ display:none; }
+
+  .footnote{ margin-top: 44px; font-size: 12.5px; color: var(--page-muted); max-width: 660px; line-height: 1.6; }
+
+  @media (max-width: 900px){
+    .browser-screen{ flex-direction:column; }
+    .side{ width:auto; flex-direction:row; align-items:center; }
+    .side-score{ margin-top:0; margin-left:auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="intro">
+    <p class="kicker">ECOFLUX — OPÇÃO 2</p>
+    <h1>Versão em tom costeiro, telas de navegador e quiosque</h1>
+    <p>Segunda direção visual: paleta em tons de mar (verde-azulado, coral e amarelo-sol), o site mostrado como acesso pelo navegador com menu lateral, e a lixeira como uma tela de quiosque com botões grandes. Toque para testar os estados.</p>
+  </div>
+
+  <div class="frames">
+
+    <div class="frame-block site">
+      <p class="frame-label">Site — painel do usuário (navegador)</p>
+      <p class="frame-sub">Acesso pelo navegador em vez de app mobile, com menu lateral fixo, mapa e pontos próximos lado a lado.</p>
+
+      <div class="browser">
+        <div class="browser-bar">
+          <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          <div class="browser-url">ecoflux.ufrpe.br/mapa</div>
+        </div>
+        <div class="browser-screen">
+          <div class="side">
+            <div class="side-brand">Ecoflux</div>
+            <div class="side-link active">Mapa</div>
+            <div class="side-link">Pontuação</div>
+            <div class="side-link">Histórico</div>
+            <div class="side-link">Perfil</div>
+            <div class="side-score">
+              <div class="num">128</div>
+              <div class="lbl">pontos acumulados</div>
+            </div>
+          </div>
+          <div class="main">
+            <div class="main-head">
+              <div>
+                <h2>Pontos de descarte</h2>
+                <p>Campus UFRPE — Dois Irmãos</p>
+              </div>
+              <div class="legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#146B6B"></span>Papel/Plástico</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#F2B705"></span>Vidro/Metal</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#E1573C"></span>Eletrônico</div>
+              </div>
+            </div>
+
+            <div class="map-panel">
+              <svg viewBox="0 0 480 230" preserveAspectRatio="xMidYMid slice">
+                <rect width="480" height="230" fill="#E3EEEA"/>
+                <path d="M0 70 Q120 40 240 75 T480 65" stroke="#C7DAD4" stroke-width="28" fill="none"/>
+                <path d="M-10 160 Q140 130 260 165 T490 155" stroke="#D3E3DD" stroke-width="36" fill="none"/>
+                <rect x="60" y="35" width="72" height="48" rx="5" fill="#C2D6CF"/>
+                <rect x="190" y="100" width="86" height="56" rx="5" fill="#C2D6CF"/>
+                <rect x="330" y="45" width="76" height="52" rx="5" fill="#C2D6CF"/>
+                <rect x="90" y="165" width="78" height="48" rx="5" fill="#C2D6CF"/>
+                <circle cx="130" cy="62" r="7" fill="#146B6B"/>
+                <circle cx="235" cy="130" r="7" fill="#F2B705"/>
+                <circle cx="370" cy="75" r="7" fill="#E1573C"/>
+                <circle cx="150" cy="195" r="7" fill="#146B6B"/>
+              </svg>
+              <div class="pin-tag" style="top:34px; left:135px;">Bloco B</div>
+              <div class="pin-tag" style="top:98px; left:210px;">Ponto 4</div>
+            </div>
+
+            <div class="grid-cards">
+              <div class="mini-card">
+                <div class="mc-top"><h4>Ponto 4 — Eng. Ambiental</h4><span class="mc-dist">80 m</span></div>
+                <div class="mc-tags"><span class="mc-tag">Papel</span><span class="mc-tag">Plástico</span><span class="mc-tag">Metal</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mc-top"><h4>Bloco B — Biblioteca</h4><span class="mc-dist">210 m</span></div>
+                <div class="mc-tags"><span class="mc-tag">Vidro</span><span class="mc-tag">Orgânico</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame-block kiosk">
+      <p class="frame-label">Lixeira inteligente — quiosque</p>
+      <p class="frame-sub">Tela de toque de maior formato, botões grandes em lista para uso rápido no ponto de descarte.</p>
+
+      <div class="kiosk-frame">
+        <div class="kiosk-screen">
+          <div class="kiosk-status"><span>● Wi-Fi conectado</span><span>Ponto 4</span></div>
+          <h2 class="kiosk-title">O que você vai descartar?</h2>
+          <p class="kiosk-sub">Toque no tipo de resíduo</p>
+
+          <div class="kiosk-grid" id="kioskGrid">
+            <button class="kiosk-btn" onclick="kioskSelect(this,'Papel')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l4 4v14a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v5h5"/></svg>
+              Papel
+            </button>
+            <button class="kiosk-btn" onclick="kioskSelect(this,'Plástico')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 8h8l1 12a2 2 0 01-2 2H9a2 2 0 01-2-2L8 8z"/><path d="M9 8V5a3 3 0 016 0v3"/></svg>
+              Plástico
+            </button>
+            <button class="kiosk-btn" onclick="kioskSelect(this,'Vidro')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 2h6l1 6-2 3v9a2 2 0 01-2 2h0a2 2 0 01-2-2v-9l-2-3 1-6z"/></svg>
+              Vidro
+            </button>
+            <button class="kiosk-btn" onclick="kioskSelect(this,'Metal')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="7" width="14" height="13" rx="1.5"/><path d="M9 7V5a3 3 0 016 0v2"/></svg>
+              Metal
+            </button>
+            <button class="kiosk-btn" onclick="kioskSelect(this,'Orgânico')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c-4.5 0-8-3.5-8-8 0-5 4-9 8-11 4 2 8 6 8 11 0 4.5-3.5 8-8 8z"/></svg>
+              Orgânico
+            </button>
+          </div>
+
+          <div class="kiosk-code" id="kioskCode">
+            <p style="margin:0; font-size:12px; color:var(--mint);">Descarte de <strong id="kCodeWaste" style="color:#fff;">Plástico</strong> registrado</p>
+            <div class="cbox" id="kCodeVal">7F3K2</div>
+            <p>Valide esse código no site Ecoflux em até 10 minutos para somar seus pontos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footnote">Segunda opção visual do Ecoflux — paleta costeira e layouts de navegador/quiosque, para comparar com a primeira versão (frame mobile, tons de floresta).</p>
+
+</div>
+
+<script>
+  function kioskSelect(el, name){
+    document.querySelectorAll('.kiosk-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('kCodeWaste').textContent = name;
+    document.getElementById('kCodeVal').textContent = Math.random().toString(36).substring(2,7).toUpperCase();
+    document.getElementById('kioskGrid').classList.add('hide');
+    document.getElementById('kioskCode').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('kioskGrid').classList.remove('hide');
+      document.getElementById('kioskCode').classList.remove('show');
+      el.classList.remove('selected');
+    }, 4000);
+  }
+</script>
+
+</body>
+</html>

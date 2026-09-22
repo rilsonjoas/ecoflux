@@ -13,19 +13,10 @@ Thumbs.db
 *.log
 logs/
 
-# ── Mobile (Flutter) ───────────────────────────────
-mobile/.dart_tool/
-mobile/build/
-mobile/.flutter-plugins
-mobile/.flutter-plugins-dependencies
-mobile/.packages
-mobile/.pub-cache/
-mobile/.pub/
-mobile/ios/Pods/
-mobile/ios/.symlinks/
-mobile/ios/Flutter/flutter_export_environment.sh
-mobile/android/.gradle/
-mobile/android/local.properties
+# ── Frontend (HTML/CSS/JS) ─────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.cache/
 
 # ── Backend (Spring Boot / Maven / Gradle) ─────────
 backend/target/
